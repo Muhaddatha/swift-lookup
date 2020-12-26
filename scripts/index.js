@@ -13,6 +13,9 @@ $(document).ready(function(){
 
 function searchWord(e){
 
+    //reset all previous word pronunciation details and extra tabs
+    //set first tab to 'Word'
+
     let enLink = "https://api.dictionaryapi.dev/api/v2/entries/en/";
     
     e.preventDefault();
@@ -80,9 +83,14 @@ let connectToAPI = theLink => {
 
 function informUserOfInvalidWord(){
     console.log("Inside informUserOfInvalidWord function\nand word to look up is: " + wordToLookup);
+    //alert?
+    //make input box red?
 
 }
 
+
+//precondition: the word entered by the user is valid 
+//wordToLookup has a length of altleast 1 character
 function parseJSONinformation(dataFromAPI){
     console.log("Inside parseJSONinformation function : dataFromAPI " + dataFromAPI);
     console.log(dataFromAPI);
@@ -103,7 +111,11 @@ function parseJSONinformation(dataFromAPI){
     console.log("Audio of " + wordToLookup + ": " + audioLink);
 
     
-    $("#word-pronunciation-details").append('<span id="wordToLookup">' + wordToLookup + '</span>', '<span id="phonetics">' + phoneticsText + '</span>', '<audio controls id="audio-section"> <source src="' + audioLink + '" /> </audio>');
+    //added all pronunciation details including the word, phonetics, and audio
+    
+    $("#word-to-look-up-tab").html(wordToLookup.charAt(0).toUpperCase() + wordToLookup.slice(1));
+    
+    $("#word-to-look-up-div").append('<span id="phonetics">Phonetics ' + phoneticsText + '</span>', '<audio controls id="audio-section"> <source src="' + audioLink + '" /> </audio>');
 
    
     
