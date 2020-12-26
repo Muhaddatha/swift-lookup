@@ -81,7 +81,7 @@ let connectToAPI = theLink => {
 }
 
 
-function informUserOfInvalidWord(){
+let informUserOfInvalidWord = () => {
     console.log("Inside informUserOfInvalidWord function\nand word to look up is: " + wordToLookup);
     alert("The word entered (" + wordToLookup + ") is not valid.\nPlease enter a valid word.");
     document.getElementById("input-word").value = wordToLookup;
@@ -93,7 +93,7 @@ function informUserOfInvalidWord(){
 
 //precondition: the word entered by the user is valid 
 //wordToLookup has a length of altleast 1 character
-function parseJSONinformation(dataFromAPI){
+let parseJSONinformation = dataFromAPI => {
     console.log("Inside parseJSONinformation function : dataFromAPI " + dataFromAPI);
     console.log(dataFromAPI);
 
