@@ -86,4 +86,31 @@ function informUserOfInvalidWord(){
 function parseJSONinformation(dataFromAPI){
     console.log("Inside parseJSONinformation function : dataFromAPI " + dataFromAPI);
     console.log(dataFromAPI);
+
+    console.log("Length of dataFromAPI is: " + dataFromAPI.length);
+    for(let i = 0; i < dataFromAPI.length; i++){
+        console.log("dataFromAPI[" + i + "]: ");
+        console.log(dataFromAPI[i]);
+        //makeTab(dataFromAPI[i]);
+    }
+
+    //word if that index has a definition
+    // phenetics
+    //audio
+    let phoneticsText = dataFromAPI[0].phonetics[0].text;
+    let audioLink = dataFromAPI[0].phonetics[0].audio;
+    console.log("Phonetics of " + wordToLookup + ": " + phoneticsText);
+    console.log("Audio of " + wordToLookup + ": " + audioLink);
+
+    
+    $("#word-pronunciation-details").append('<span id="wordToLookup">' + wordToLookup + '</span>', '<span id="phonetics">' + phoneticsText + '</span>', '<audio controls id="audio-section"> <source src="' + audioLink + '" /> </audio>');
+
+   
+    
+    //tabs as many as useful objects in array
+    //in each tab
+    //defintion, example, any thing else useful and a link to dictionary and maybe to sentence dict
+    //a function to reste everything
+
+
 }
