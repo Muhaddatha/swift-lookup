@@ -56,16 +56,18 @@ let connectToAPI = theLink => {
             console.log("Not successful");
             success = false;
             // got a 404 response
-            //inform user word was not correct
         }
         
     })
     .then(dataFromAPI => {
         if(success){
             console.log(dataFromAPI);
+            parseJSONinformation(dataFromAPI);
         }
         else{
             console.log("error occured! word spelled incorrectly");
+            //inform user word was not valid
+            informUserOfInvalidWord();
         }
         
     })
@@ -73,4 +75,15 @@ let connectToAPI = theLink => {
     console.log("Returning json data from connect to API function")
     // return data;
 
+}
+
+
+function informUserOfInvalidWord(){
+    console.log("Inside informUserOfInvalidWord function\nand word to look up is: " + wordToLookup);
+
+}
+
+function parseJSONinformation(dataFromAPI){
+    console.log("Inside parseJSONinformation function : dataFromAPI " + dataFromAPI);
+    console.log(dataFromAPI);
 }
