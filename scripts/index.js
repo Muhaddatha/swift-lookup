@@ -1,4 +1,5 @@
 let wordToLookup;
+let enLink = "https://api.dictionaryapi.dev/api/v2/entries/en/";
 
 $(document).ready(function(){
 
@@ -23,4 +24,11 @@ function searchWord(e){
 
    //clear the input field
    document.getElementById("word-form").reset();
+
+   //create link
+   enLink += wordToLookup;
+   console.log("Link to look up: " + enLink);
+
+   
+   
 }
