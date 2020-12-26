@@ -83,7 +83,9 @@ let connectToAPI = theLink => {
 
 function informUserOfInvalidWord(){
     console.log("Inside informUserOfInvalidWord function\nand word to look up is: " + wordToLookup);
-    //alert?
+    alert("The word entered (" + wordToLookup + ") is not valid.\nPlease enter a valid word.");
+    document.getElementById("input-word").value = wordToLookup;
+
     //make input box red?
 
 }
