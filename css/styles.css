@@ -1,12 +1,10 @@
-/* 
-colors
-#21195a dark blue
-#6a1a27 dark red/mohagony
-#ffa600 rich yellow
-#edc416 medium yellow
-#966250 brown jegari
-
-*/
+:root{
+    --richYellow: #ffa600;
+    --darkBlue: #21195a;
+    --lightBlue: #5e80c5;
+    --darkPink: #bb3438;
+    --darkPurple: #1b1b22;
+}
 
 
 body{
@@ -17,10 +15,10 @@ body{
     margin: 0;
 }
 
+
 header{
     justify-content: center;
-    /* padding-bottom: 4%; */
-    
+    padding-bottom: 2%;
 }
 
 
@@ -31,6 +29,7 @@ input{
     margin-bottom: 2%;
 }
 
+
 .logo-image{
     margin: auto;
     text-align: center;
@@ -38,12 +37,72 @@ input{
 }
 
 
-img{
+.input{
+    width: fit-content;
     margin: auto;
+    height: fit-content;
+    position: relative;
+    border: 4px solid var(--darkBlue);
+    color: #ddd;
+    margin-bottom: 3%;
 }
-/* 
-label{
-   
-    
-} */
 
+
+.input::after, .input::before{
+    content: '';
+    position: absolute;
+    width: 30px;
+    height: 4px;
+    background: var(--richYellow);
+    transform: skew(45deg);
+    transition: 0.9s all ease;
+}
+
+
+.input::before{
+    top: -4px;
+    left: 20px;
+}
+
+
+.input:hover::before{
+   left: 80%; 
+}
+
+
+.input::after{
+    bottom: -4px;
+    right: 20px;
+}
+
+
+.input:hover::after{
+    right: 80%; 
+}
+
+
+#input-word{
+    width: 100%;
+    height: 100%;
+    border: none;
+    outline: none;
+    background: transparent;
+    /* color: #ddd; */
+}
+
+
+#button{
+    font-size: 1rem; 
+    padding: 1%;
+    color: #21195a;
+    background: var(--richYellow);
+    border: 4px solid transparent;
+    transition: 0.9s all ease;
+}
+
+
+#button:hover{
+    background-color: var(--darkBlue);
+    color: white;
+    border-radius: 2%;
+}
