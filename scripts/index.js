@@ -117,7 +117,7 @@ let parseJSONinformation = dataFromAPI => {
     
     $("#word-to-look-up-tab").html(wordToLookup.charAt(0).toUpperCase() + wordToLookup.slice(1));
     
-    $("#word-to-look-up-div").append('<span id="phonetics">Phonetics ' + phoneticsText + '</span>', '<audio controls id="audio-section"> <source src="' + audioLink + '" /> </audio>');
+    $("#word-to-look-up-div").append('<span id="phonetics">Phonetics ' + phoneticsText + '</span>', '<audio controls id="audio-section"> <source id="audio-link" src="' + audioLink + '" /> </audio>');
 
    
     
