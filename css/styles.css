@@ -1,0 +1,49 @@
+/* 
+colors
+#21195a dark blue
+#6a1a27 dark red/mohagony
+#ffa600 rich yellow
+#edc416 medium yellow
+#966250 brown jegari
+
+*/
+
+
+body{
+    min-width: 300px;
+    max-width: 350px;
+    min-height: 180;
+    padding: 2%;
+    margin: 0;
+}
+
+header{
+    justify-content: center;
+    /* padding-bottom: 4%; */
+    
+}
+
+
+input{
+    display: block;
+    margin: auto;
+    text-align: center;
+    margin-bottom: 2%;
+}
+
+.logo-image{
+    margin: auto;
+    text-align: center;
+    margin-bottom: 2%;
+}
+
+
+img{
+    margin: auto;
+}
+/* 
+label{
+   
+    
+} */
+
