@@ -133,8 +133,13 @@ let makePrimaryTab = dataFromAPI => {
 
     
     //added all pronunciation details including the word, phonetics, and audio
+    if(dataFromAPI.length == 1){
+        $("#word-to-look-up-tab").html(dataFromAPI[0].word.charAt(0).toUpperCase() + dataFromAPI[0].word.slice(1));
+    }
+    else{
+        $("#word-to-look-up-tab").html(dataFromAPI[0].word);
+    }
     
-    $("#word-to-look-up-tab").html(dataFromAPI[0].word);
     
     $("#word-to-look-up-div").append('<span id="phonetics">Phonetics ' + phoneticsText + '</span>', '<audio controls id="audio-section"> <source id="audio-link" src="' + audioLink + '" /> </audio>');
 
@@ -198,37 +203,37 @@ let makeSecondaryTabs = dataFromAPI => {
         //iterate through meanings based on part of speech
         for(let j = 0; j < dataFromAPI[p].meanings.length; j++){
 
-        //check this selector
-        $('#myTabContent div:last').append('<p>' + wordToLookup + ' as a ' + dataFromAPI[p].meanings[j].partOfSpeech + '</p>');
+            //check this selector
+            $('#myTabContent div:last').append('<p>' + wordToLookup + ' as a ' + dataFromAPI[p].meanings[j].partOfSpeech + '</p>');
 
-        for(let k = 0; k < dataFromAPI[p].meanings[j].definitions.length; k++){
+            for(let k = 0; k < dataFromAPI[p].meanings[j].definitions.length; k++){
 
-            $('#myTabContent div:last').append('<p>' + dataFromAPI[p].meanings[j].definitions[k].definition + '<p>');
+                $('#myTabContent div:last').append('<p>' + dataFromAPI[p].meanings[j].definitions[k].definition + '<p>');
 
-            if(dataFromAPI[p].meanings[j].definitions[k].example === undefined){
-                console.log("No synonyms exist");
-            }
-            else{
-                $('#myTabContent div:last').append('<p> Example: ' + dataFromAPI[p].meanings[j].definitions[k].example + '</p>');
+                if(dataFromAPI[p].meanings[j].definitions[k].example === undefined){
+                    console.log("No synonyms exist");
+                }
+                else{
+                    $('#myTabContent div:last').append('<p> Example: ' + dataFromAPI[p].meanings[j].definitions[k].example + '</p>');
 
-            }
+                }
             
 
-            
-            if(dataFromAPI[p].meanings[j].definitions[k].synonyms === undefined){
-                console.log("No synonyms exist");
+                
+                if(dataFromAPI[p].meanings[j].definitions[k].synonyms === undefined){
+                    console.log("No synonyms exist");
+                }
+                else{
+                    $('#myTabContent div:last').append('<p> Synonyms ' + dataFromAPI[p].meanings[j].definitions[k].synonyms + '</p>');
+                }
             }
-            else{
-                $('#myTabContent div:last').append('<p> Synonyms ' + dataFromAPI[p].meanings[j].definitions[k].synonyms + '</p>');
-            }
-            
             
         }
 
         $('#myTabContent div:last').append('<hr></hr>');
     }
 
-    }
+    
 
     //tabs as many as useful objects in array
     //in each tab
