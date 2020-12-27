@@ -14,7 +14,6 @@ $(document).ready(function(){
 function searchWord(e){
 
     //reset all previous word pronunciation details and extra tabs
-    //set first tab to 'Word'
     resetEverything();
 
     let enLink = "https://api.dictionaryapi.dev/api/v2/entries/en/";
