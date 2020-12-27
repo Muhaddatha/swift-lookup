@@ -50,13 +50,13 @@ let connectToAPI = theLink => {
     fetch(theLink) //fetch only catches network errors not 404 errors
     .then(res => {
         if(res.ok){
-            console.log("Success!");
+            console.log("Success! 200 level reply");
             // ok response receivede
             return res.json() 
             // turning the response into readable json format
         }
         else{
-            console.log("Not successful");
+            console.log("Not successful. 404 error");
             success = false;
             // got a 404 response
         }
@@ -108,12 +108,16 @@ let parseJSONinformation = dataFromAPI => {
 
     if(dataFromAPI.length > 1){
         console.log("More than one version of " + wordToLookup + " received.");
-        makeSecondaryTabs(dataFromAPI);
+        
+        makeSecondaryTab(dataFromAPI);
+    
     }
    
 }
 
 let makePrimaryTab = dataFromAPI => {
+
+
 
     console.log("Inside make primary tag function");
 
@@ -128,7 +132,7 @@ let makePrimaryTab = dataFromAPI => {
     
     //added all pronunciation details including the word, phonetics, and audio
     
-    $("#word-to-look-up-tab").html(wordToLookup.charAt(0).toUpperCase() + wordToLookup.slice(1));
+    $("#word-to-look-up-tab").html(dataFromAPI[0].word);
     
     $("#word-to-look-up-div").append('<span id="phonetics">Phonetics ' + phoneticsText + '</span>', '<audio controls id="audio-section"> <source id="audio-link" src="' + audioLink + '" /> </audio>');
 
@@ -138,7 +142,17 @@ let makePrimaryTab = dataFromAPI => {
         $('#word-to-look-up-div').append('<p>' + wordToLookup + ' as a ' + dataFromAPI[0].meanings[j].partOfSpeech + '</p>');
 
         for(let k = 0; k < dataFromAPI[0].meanings[j].definitions.length; k++){
-            $('#word-to-look-up-div').append('<p>' + dataFromAPI[0].meanings[j].definitions[k].definition + '<p>', '<p> Example: ' + dataFromAPI[0].meanings[j].definitions[k].example + '</p>');
+
+            $('#word-to-look-up-div').append('<p>' + dataFromAPI[0].meanings[j].definitions[k].definition + '<p>');
+
+            if(dataFromAPI[0].meanings[j].definitions[k].example === undefined){
+                console.log("No synonyms exist");
+            }
+            else{
+                $('#word-to-look-up-div').append('<p> Example: ' + dataFromAPI[0].meanings[j].definitions[k].example + '</p>');
+
+            }
+            
 
             
             if(dataFromAPI[0].meanings[j].definitions[k].synonyms === undefined){
@@ -160,9 +174,16 @@ let makePrimaryTab = dataFromAPI => {
 
 
 
-let makeSecondaryTabs = (dataArray) => {
+let makeSecondaryTab = (dataArray) => {
 
     console.log("Inside make secondary tabs function");
+
+    $('#myTab').append('<li class="nav-item"><a class="nav-link" id="word-defintions-tab" data-toggle="tab" href="#word-defintions" role="tab" aria-controls="profile" aria-selected="false">' + dataArray.word + '</a></li>');
+
+    $('#myTabContent').append('<div class="tab-pane fade" id="word-defintions" role="tabpanel" aria-labelledby=profile-tab">' + dataArray.word + 'definition </div>');
+
+   
+    
 
     //tabs as many as useful objects in array
     //in each tab
