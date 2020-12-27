@@ -117,7 +117,9 @@ let parseJSONinformation = dataFromAPI => {
 
 let makePrimaryTab = dataFromAPI => {
 
+    $('#myTab').append('<li class="nav-item"><a class="nav-link active" id="word-to-look-up-tab" data-toggle="tab" href="word-to-look-up-div" role="tab" aria-controls="home" aria-selected="true">Word</a></li>');
 
+    $('#myTabContent').append('<div class="tab-pane fade show active" id="word-to-look-up-div" role="tabpanel" aria-labelledby="home-tab"></div>');
 
     console.log("Inside make primary tag function");
 
