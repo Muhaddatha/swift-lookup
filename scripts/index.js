@@ -109,7 +109,7 @@ let parseJSONinformation = dataFromAPI => {
     if(dataFromAPI.length > 1){
         console.log("More than one version of " + wordToLookup + " received.");
         
-        makeSecondaryTab(dataFromAPI);
+        makeSecondaryTabs(dataFromAPI);
     
     }
    
@@ -117,7 +117,7 @@ let parseJSONinformation = dataFromAPI => {
 
 let makePrimaryTab = dataFromAPI => {
 
-    $('#myTab').append('<li class="nav-item"><a class="nav-link active" id="word-to-look-up-tab" data-toggle="tab" href="word-to-look-up-div" role="tab" aria-controls="home" aria-selected="true">Word</a></li>');
+    $('#myTab').append('<li class="nav-item"><a class="nav-link active" id="word-to-look-up-tab" data-toggle="tab" href="#word-to-look-up-div" role="tab" aria-controls="home" aria-selected="true">Word</a></li>');
 
     $('#myTabContent').append('<div class="tab-pane fade show active" id="word-to-look-up-div" role="tabpanel" aria-labelledby="home-tab"></div>');
 
@@ -176,14 +176,65 @@ let makePrimaryTab = dataFromAPI => {
 
 
 
-let makeSecondaryTab = (dataArray) => {
+let makeSecondaryTabs = dataFromAPI => {
 
     console.log("Inside make secondary tabs function");
 
-    $('#myTab').append('<li class="nav-item"><a class="nav-link" id="word-defintions-tab" data-toggle="tab" href="#word-defintions" role="tab" aria-controls="profile" aria-selected="false">' + dataArray.word + '</a></li>');
+    for(let p = 1; p < dataFromAPI.length;p++){
 
-    $('#myTabContent').append('<div class="tab-pane fade" id="word-defintions" role="tabpanel" aria-labelledby=profile-tab">' + dataArray.word + 'definition </div>');
+        $('#myTab').append('<li class="nav-item"><a class="nav-link" id="word-defintions-tab"' + p + '" data-toggle="tab" href="#word-defintions' + p + '" role="tab" aria-controls="profile" aria-selected="false">' + dataFromAPI[p].word + '</a></li>');
 
+        let phoneticsText1 = dataFromAPI[p].phonetics[0].text;
+        let audioLink1 = dataFromAPI[p].phonetics[0].audio;
+        console.log("Phonetics of secondary tab " + wordToLookup + ": " + phoneticsText1);
+        console.log("Audio of secondary tab " + wordToLookup + ": " + audioLink1);
+
+        $('#myTabContent').append('<div class="tab-pane fade" id="word-defintions' + p + '" role="tabpanel" aria-labelledby=profile-tab">' + dataFromAPI[p].word + '</div>');
+        
+        $('#myTabContent div:last').append(' <span id="phonetics' + p + '">Phonetics' + phoneticsText1 + '</span>', '<audio controls id="audio-section' + p + '"> <source id="audio-link' + p + '" scr="' + audioLink1 + '"/></audio>');
+        
+       
+
+        //iterate through meanings based on part of speech
+        for(let j = 0; j < dataFromAPI[p].meanings.length; j++){
+
+        //check this selector
+        $('#myTabContent div:last').append('<p>' + wordToLookup + ' as a ' + dataFromAPI[p].meanings[j].partOfSpeech + '</p>');
+
+        for(let k = 0; k < dataFromAPI[p].meanings[j].definitions.length; k++){
+
+            $('#myTabContent div:last').append('<p>' + dataFromAPI[p].meanings[j].definitions[k].definition + '<p>');
+
+            if(dataFromAPI[p].meanings[j].definitions[k].example === undefined){
+                console.log("No synonyms exist");
+            }
+            else{
+                $('#myTabContent div:last').append('<p> Example: ' + dataFromAPI[p].meanings[j].definitions[k].example + '</p>');
+
+            }
+            
+
+            
+            if(dataFromAPI[p].meanings[j].definitions[k].synonyms === undefined){
+                console.log("No synonyms exist");
+            }
+            else{
+                $('#myTabContent div:last').append('<p> Synonyms ' + dataFromAPI[p].meanings[j].definitions[k].synonyms + '</p>');
+            }
+            
+            
+        }
+
+        $('#myTabContent div:last').append('<hr></hr>');
+    }
+
+    }
+
+    
+
+    
+
+    
    
     
 
@@ -192,14 +243,5 @@ let makeSecondaryTab = (dataArray) => {
     //defintion, example, any thing else useful and a link to dictionary and maybe to sentence dict
     //a function to reste everything
 
-    console.log("Inside makeTabs function.");
-    console.log("Versions of wordToLookup: " + dataArray.length);
-
-    word1 = dataArray[0].word;
-    $("#word-defintions").append('<span>' + word1 + '</span>');
-
-   for(let j = 0; j < dataArray[0].meanings.length; j++){
-
-   }
 
 }
