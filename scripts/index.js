@@ -15,6 +15,7 @@ function searchWord(e){
 
     //reset all previous word pronunciation details and extra tabs
     //set first tab to 'Word'
+    resetEverything();
 
     let enLink = "https://api.dictionaryapi.dev/api/v2/entries/en/";
     
@@ -230,18 +231,17 @@ let makeSecondaryTabs = dataFromAPI => {
 
     }
 
-    
-
-    
-
-    
-   
-    
-
     //tabs as many as useful objects in array
     //in each tab
     //defintion, example, any thing else useful and a link to dictionary and maybe to sentence dict
     //a function to reste everything
 
 
+}
+
+
+let resetEverything = () =>{
+
+    $('#myTab').empty();
+    $('#myTabContent').empty();
 }
