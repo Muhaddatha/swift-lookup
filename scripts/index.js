@@ -194,7 +194,7 @@ let makeSecondaryTabs = dataFromAPI => {
         console.log("Phonetics of secondary tab " + wordToLookup + ": " + phoneticsText1);
         console.log("Audio of secondary tab " + wordToLookup + ": " + audioLink1);
 
-        $('#myTabContent').append('<div class="tab-pane fade" id="word-defintions' + p + '" role="tabpanel" aria-labelledby=profile-tab">' + dataFromAPI[p].word + '</div>');
+        $('#myTabContent').append('<div class="tab-pane fade" id="word-defintions' + p + '" role="tabpanel" aria-labelledby=profile-tab"></div>');
         
         $('#myTabContent div:last').append('<span id="phonetics' + p + '">Phonetics ' + phoneticsText1 + '</span>', '<audio controls id="audio-section' + p + '"> <source id="audio-link" src="' + audioLink1 + '" /> </audio>');
         
