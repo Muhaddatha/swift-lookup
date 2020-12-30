@@ -141,22 +141,22 @@ let makePrimaryTab = dataFromAPI => {
     }
     
     
-    $("#word-to-look-up-div").append('<span id="phonetics">Phonetics ' + phoneticsText + '</span>', '<audio controls id="audio-section"> <source id="audio-link" src="' + audioLink + '" /> </audio>');
+    $("#word-to-look-up-div").append('<audio controls id="audio-section"> <source id="audio-link" src="' + audioLink + '" /> </audio>', '<p class="phonetics">' + phoneticsText + '</p>', '<hr>');
 
     //iterate through meanings based on part of speech
     for(let j = 0; j < dataFromAPI[0].meanings.length; j++){
 
-        $('#word-to-look-up-div').append('<p>' + wordToLookup + ' as a ' + dataFromAPI[0].meanings[j].partOfSpeech + '</p>');
+        $('#word-to-look-up-div').append('<p class="part-of-speech">As: <span>' + dataFromAPI[0].meanings[j].partOfSpeech + '</span></p>');
 
         for(let k = 0; k < dataFromAPI[0].meanings[j].definitions.length; k++){
 
             $('#word-to-look-up-div').append('<p>' + dataFromAPI[0].meanings[j].definitions[k].definition + '<p>');
 
             if(dataFromAPI[0].meanings[j].definitions[k].example === undefined){
-                console.log("No synonyms exist");
+                console.log("No examples exist");
             }
             else{
-                $('#word-to-look-up-div').append('<p> Example: ' + dataFromAPI[0].meanings[j].definitions[k].example + '</p>');
+                $('#word-to-look-up-div').append('<p>Example: "' + dataFromAPI[0].meanings[j].definitions[k].example + '"</p>');
 
             }
             
@@ -166,7 +166,7 @@ let makePrimaryTab = dataFromAPI => {
                 console.log("No synonyms exist");
             }
             else{
-                $('#word-to-look-up-div').append('<p> Synonyms ' + dataFromAPI[0].meanings[j].definitions[k].synonyms + '</p>');
+                $('#word-to-look-up-div').append('<p>Synonyms: ' + dataFromAPI[0].meanings[j].definitions[k].synonyms + '</p>');
             }
             
             
@@ -196,7 +196,7 @@ let makeSecondaryTabs = dataFromAPI => {
 
         $('#myTabContent').append('<div class="tab-pane fade" id="word-defintions' + p + '" role="tabpanel" aria-labelledby=profile-tab"></div>');
         
-        $('#myTabContent div:last').append('<span id="phonetics' + p + '">Phonetics ' + phoneticsText1 + '</span>', '<audio controls id="audio-section' + p + '"> <source id="audio-link" src="' + audioLink1 + '" /> </audio>');
+        $('#myTabContent div:last').append('<audio controls id="audio-section' + p + '"> <source id="audio-link" src="' + audioLink1 + '" /> </audio>', '<p class="phonetics' + p + '">' + phoneticsText1 + '</p>', '<hr>');
         
        
 
@@ -204,17 +204,17 @@ let makeSecondaryTabs = dataFromAPI => {
         for(let j = 0; j < dataFromAPI[p].meanings.length; j++){
 
             //check this selector
-            $('#myTabContent div:last').append('<p>' + wordToLookup + ' as a ' + dataFromAPI[p].meanings[j].partOfSpeech + '</p>');
+            $('#myTabContent div:last').append('<p class="part-of-speech">As: <span>' + dataFromAPI[p].meanings[j].partOfSpeech + '</span></p>');
 
             for(let k = 0; k < dataFromAPI[p].meanings[j].definitions.length; k++){
 
                 $('#myTabContent div:last').append('<p>' + dataFromAPI[p].meanings[j].definitions[k].definition + '<p>');
 
                 if(dataFromAPI[p].meanings[j].definitions[k].example === undefined){
-                    console.log("No synonyms exist");
+                    console.log("No examples exist");
                 }
                 else{
-                    $('#myTabContent div:last').append('<p> Example: ' + dataFromAPI[p].meanings[j].definitions[k].example + '</p>');
+                    $('#myTabContent div:last').append('<p>Example: "' + dataFromAPI[p].meanings[j].definitions[k].example + '"</p>');
 
                 }
             
@@ -224,7 +224,7 @@ let makeSecondaryTabs = dataFromAPI => {
                     console.log("No synonyms exist");
                 }
                 else{
-                    $('#myTabContent div:last').append('<p> Synonyms ' + dataFromAPI[p].meanings[j].definitions[k].synonyms + '</p>');
+                    $('#myTabContent div:last').append('<p>Synonyms: ' + dataFromAPI[p].meanings[j].definitions[k].synonyms + '</p>');
                 }
             }
             
