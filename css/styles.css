@@ -110,7 +110,10 @@ input{
 
 
 audio{
-    margin-top: 4%;
+    margin: auto;
+    display: flex;
+    padding-top: 4%;
+    margin-bottom: 3%;
 }
 
 p[class^="phonetics"]{
