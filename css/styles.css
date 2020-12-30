@@ -120,3 +120,20 @@ p[class^="phonetics"]{
 .part-of-speech span{
     font-weight: bold;
 }
+
+.indented-block p{
+    display: inline-block;
+    margin-left: 1rem;
+    font-style: italic;
+    font-size: 90%;
+    opacity: 80%;
+    transition: opacity 0.5s, font-size 0.8s ease;
+}
+
+
+.indented-block p:focus, .indented-block p:active, .indented-block p:hover{
+    opacity: 100%;
+    font-size: 100%;
+    
+}
+

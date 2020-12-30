@@ -156,7 +156,7 @@ let makePrimaryTab = dataFromAPI => {
                 console.log("No examples exist");
             }
             else{
-                $('#word-to-look-up-div').append('<p>Example: "' + dataFromAPI[0].meanings[j].definitions[k].example + '"</p>');
+                $('#word-to-look-up-div').append('<div class="indented-block"><p>Example: "' + dataFromAPI[0].meanings[j].definitions[k].example + '"</p></div>');
 
             }
             
@@ -166,7 +166,12 @@ let makePrimaryTab = dataFromAPI => {
                 console.log("No synonyms exist");
             }
             else{
-                $('#word-to-look-up-div').append('<p>Synonyms: ' + dataFromAPI[0].meanings[j].definitions[k].synonyms + '</p>');
+                //put space in between synonyms
+                for(synonym in dataFromAPI[0].meanings[j].definitions[k].synonyms){
+                    dataFromAPI[0].meanings[j].definitions[k].synonyms[synonym] = " " + dataFromAPI[0].meanings[j].definitions[k].synonyms[synonym];
+                }
+
+                $('#word-to-look-up-div').append('<div class="indented-block"><p>Synonyms: ' + dataFromAPI[0].meanings[j].definitions[k].synonyms + '</p></div>');
             }
             
             
@@ -214,7 +219,7 @@ let makeSecondaryTabs = dataFromAPI => {
                     console.log("No examples exist");
                 }
                 else{
-                    $('#myTabContent div:last').append('<p>Example: "' + dataFromAPI[p].meanings[j].definitions[k].example + '"</p>');
+                    $('#myTabContent div:last').append('<div class="indented-block"><p>Example: "' + dataFromAPI[p].meanings[j].definitions[k].example + '"</p></div>');
 
                 }
             
@@ -224,13 +229,20 @@ let makeSecondaryTabs = dataFromAPI => {
                     console.log("No synonyms exist");
                 }
                 else{
-                    $('#myTabContent div:last').append('<p>Synonyms: ' + dataFromAPI[p].meanings[j].definitions[k].synonyms + '</p>');
+
+                    //put space in between synonyms
+                    for(synonym in dataFromAPI[p].meanings[j].definitions[k].synonyms){
+                        dataFromAPI[p].meanings[j].definitions[k].synonyms[synonym] = " " + dataFromAPI[p].meanings[j].definitions[k].synonyms[synonym];
+                    }
+
+
+                    $('#myTabContent div:last').append('<div class="indented-block"><p>Synonyms: ' + dataFromAPI[p].meanings[j].definitions[k].synonyms + '</p></div>');
                 }
             }
             
         }
 
-        $('#myTabContent div:last').append('<hr></hr>');
+        $('#myTabContent').append('<hr></hr>');
     }
 
     
