@@ -123,15 +123,7 @@ let makePrimaryTab = dataFromAPI => {
 
     console.log("Inside make primary tag function");
 
-    //word if that index has a definition
-    // phenetics
-    //audio
-    let phoneticsText = dataFromAPI[0].phonetics[0].text;
-    let audioLink = dataFromAPI[0].phonetics[0].audio;
-    console.log("Phonetics of " + wordToLookup + ": " + phoneticsText);
-    console.log("Audio of " + wordToLookup + ": " + audioLink);
 
-    
     //added all pronunciation details including the word, phonetics, and audio
     if(dataFromAPI.length == 1){
         $("#word-to-look-up-tab").html(dataFromAPI[0].word.charAt(0).toUpperCase() + dataFromAPI[0].word.slice(1));
@@ -139,10 +131,26 @@ let makePrimaryTab = dataFromAPI => {
     else{
         $("#word-to-look-up-tab").html(dataFromAPI[0].word);
     }
-    
-    
-    $("#word-to-look-up-div").append('<audio controls id="audio-section"> <source id="audio-link" src="' + audioLink + '" /> </audio>', '<p class="phonetics">' + phoneticsText + '</p>', '<hr>');
 
+    //word if that index has a definition
+    // phenetics
+    //audio
+    let phoneticsText;
+    let audioLink;
+    if(dataFromAPI[0].phonetics[0] === undefined){
+        console.log("Primary tab: phonetics missing.");
+    }
+    else{
+        phoneticsText = dataFromAPI[0].phonetics[0].text;
+        audioLink = dataFromAPI[0].phonetics[0].audio;
+        console.log("Phonetics of " + wordToLookup + ": " + phoneticsText);
+        console.log("Audio of " + wordToLookup + ": " + audioLink);
+        $("#word-to-look-up-div").append('<audio controls id="audio-section"> <source id="audio-link" src="' + audioLink + '" /> </audio>', '<p class="phonetics">' + phoneticsText + '</p>', '<hr>');
+
+    }
+  
+    
+    
     //iterate through meanings based on part of speech
     for(let j = 0; j < dataFromAPI[0].meanings.length; j++){
 
@@ -202,9 +210,8 @@ let makeSecondaryTabs = dataFromAPI => {
         $('#myTabContent').append('<div class="tab-pane fade" id="word-defintions' + p + '" role="tabpanel" aria-labelledby=profile-tab"></div>');
         
         $('#myTabContent div:last').append('<audio controls id="audio-section' + p + '"> <source id="audio-link" src="' + audioLink1 + '" /> </audio>', '<p class="phonetics' + p + '">' + phoneticsText1 + '</p>', '<hr>');
-        
-       
 
+        
         //iterate through meanings based on part of speech
         for(let j = 0; j < dataFromAPI[p].meanings.length; j++){
 
