@@ -51,7 +51,7 @@ let connectToAPI = theLink => {
 
             //clear the input field
             document.getElementById("word-form").reset();
-            
+
             // ok response receivede
             return res.json();
             // turning the response into readable json format
@@ -146,7 +146,7 @@ let makePrimaryTab = dataFromAPI => {
         audioLink = dataFromAPI[0].phonetics[0].audio;
         console.log("Phonetics of " + wordToLookup + ": " + phoneticsText);
         console.log("Audio of " + wordToLookup + ": " + audioLink);
-        $("#word-to-look-up-div").append('<audio controls id="audio-section"> <source id="audio-link" src="' + audioLink + '" /> </audio>', '<p class="phonetics" title="phonetics for ' + wordToLookup + '">' + phoneticsText + '</p>', '<hr>');
+        $("#word-to-look-up-div").append('<audio title="audio for ' + wordToLookup + '" controls id="audio-section"> <source id="audio-link" src="' + audioLink + '" /> </audio>', '<p class="phonetics" title="phonetics for ' + wordToLookup + '">' + phoneticsText + '</p>', '<hr>');
 
     }
   
@@ -216,7 +216,7 @@ let makeSecondaryTabs = dataFromAPI => {
 
             
             
-            $('#myTabContent div:last').append('<audio controls id="audio-section' + p + '"> <source id="audio-link" src="' + audioLink1 + '" /> </audio>', '<p class="phonetics' + p + '" title="phonetics for ' + wordToLookup + '">' + phoneticsText1 + '</p>', '<hr>');
+            $('#myTabContent div:last').append('<audio title="audio for ' + wordToLookup + '" controls id="audio-section' + p + '"> <source id="audio-link" src="' + audioLink1 + '" /> </audio>', '<p class="phonetics' + p + '" title="phonetics for ' + wordToLookup + '">' + phoneticsText1 + '</p>', '<hr>');
         }
         
 
