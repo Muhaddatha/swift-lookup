@@ -6,15 +6,12 @@
     --darkPurple: #1b1b22;
 }
 
-html{
-    overflow-y: scroll;
-}
-
 
 body{
     min-width: 300px;
-    max-width: 350px;
-    min-height: 500px;
+    max-width: 400px;
+    min-height: 250px;
+    overflow-y: scroll;
     padding: 2%;
     margin: 0;
     contain: content;
