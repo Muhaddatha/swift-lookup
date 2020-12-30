@@ -202,14 +202,22 @@ let makeSecondaryTabs = dataFromAPI => {
 
         $('#myTab').append('<li class="nav-item"><a class="nav-link" id="word-defintions-tab"' + p + '" data-toggle="tab" href="#word-defintions' + p + '" role="tab" aria-controls="profile" aria-selected="false">' + dataFromAPI[p].word + '</a></li>');
 
-        let phoneticsText1 = dataFromAPI[p].phonetics[0].text;
-        let audioLink1 = dataFromAPI[p].phonetics[0].audio;
-        console.log("Phonetics of secondary tab " + wordToLookup + ": " + phoneticsText1);
-        console.log("Audio of secondary tab " + wordToLookup + ": " + audioLink1);
-
         $('#myTabContent').append('<div class="tab-pane fade" id="word-defintions' + p + '" role="tabpanel" aria-labelledby=profile-tab"></div>');
+
+        if(dataFromAPI[p].phonetics[0] === undefined){
+            console.log("Missing phonetics secondary tabs");
+        }
+        else{
+            let phoneticsText1 = dataFromAPI[p].phonetics[0].text;
+            let audioLink1 = dataFromAPI[p].phonetics[0].audio;
+            console.log("Phonetics of secondary tab " + wordToLookup + ": " + phoneticsText1);
+            console.log("Audio of secondary tab " + wordToLookup + ": " + audioLink1);
+
+            
+            
+            $('#myTabContent div:last').append('<audio controls id="audio-section' + p + '"> <source id="audio-link" src="' + audioLink1 + '" /> </audio>', '<p class="phonetics' + p + '">' + phoneticsText1 + '</p>', '<hr>');
+        }
         
-        $('#myTabContent div:last').append('<audio controls id="audio-section' + p + '"> <source id="audio-link" src="' + audioLink1 + '" /> </audio>', '<p class="phonetics' + p + '">' + phoneticsText1 + '</p>', '<hr>');
 
         
         //iterate through meanings based on part of speech
