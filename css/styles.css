@@ -114,15 +114,25 @@ audio{
     display: flex;
     padding-top: 4%;
     margin-bottom: 3%;
+    border: none;
 }
+
+
+/* removes box border around audio when it is clicked */
+audio:focus{
+    outline: none;
+}
+
 
 p[class^="phonetics"]{
     text-align: center;
 }
 
+
 .part-of-speech span{
     font-weight: bold;
 }
+
 
 .indented-block p{
     display: inline-block;
