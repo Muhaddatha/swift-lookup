@@ -8,5 +8,6 @@
         "default_icon": "images/LogoMakr-8VroqB_19.png",
         "default_popup": "index.html"
     },
-    "permissions": ["activeTab"]
+    "permissions": ["activeTab"],
+    "content_security_policy":"script-src 'self' https://apis.google.com; object-src 'self'"
 }
