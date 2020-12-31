@@ -89,7 +89,7 @@ let informUserOfInvalidWord = () => {
     console.log("Inside informUserOfInvalidWord function\nand word to look up is: " + wordToLookup);
 
     //make input box red?
-    $('#invalid-word-error').html("Please enter a valid English word.");
+    $('#invalid-word-error').html("Please enter a valid English word.<br>(Error: '" + wordToLookup + "')");
     $('#invalid-word-error').removeAttr('hidden');
 
 }
