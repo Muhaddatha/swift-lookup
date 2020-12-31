@@ -16,6 +16,8 @@ function searchWord(e){
     //reset all previous word pronunciation details and extra tabs
     resetEverything();
 
+    $('#invalid-word-error').prop("hidden", "true");
+
     let enLink = "https://api.dictionaryapi.dev/api/v2/entries/en/";
     
     e.preventDefault();
@@ -77,7 +79,7 @@ let connectToAPI = theLink => {
     })
 
     console.log("Returning json data from connect to API function")
-    // return data;
+
 
 }
 
@@ -85,10 +87,10 @@ let connectToAPI = theLink => {
 //informs user that the word is not a valid English word
 let informUserOfInvalidWord = () => {
     console.log("Inside informUserOfInvalidWord function\nand word to look up is: " + wordToLookup);
-    alert("The word entered (" + wordToLookup + ") is not valid.\nPlease enter a valid English word.");
-    document.getElementById("input-word").value = wordToLookup;
 
     //make input box red?
+    $('#invalid-word-error').html("Please enter a valid English word.");
+    $('#invalid-word-error').removeAttr('hidden');
 
 }
 
@@ -96,8 +98,7 @@ let informUserOfInvalidWord = () => {
 //precondition: the word entered by the user is valid 
 //wordToLookup has a length of altleast 1 character
 let parseJSONinformation = dataFromAPI => {
-    console.log("Inside parseJSONinformation function : dataFromAPI " + dataFromAPI);
-    console.log(dataFromAPI);
+    console.log("Inside parseJSONinformation function");
 
     console.log("Length of dataFromAPI is: " + dataFromAPI.length);
     for(let i = 0; i < dataFromAPI.length; i++){
