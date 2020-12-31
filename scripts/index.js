@@ -82,6 +82,7 @@ let connectToAPI = theLink => {
 }
 
 
+//informs user that the word is not a valid English word
 let informUserOfInvalidWord = () => {
     console.log("Inside informUserOfInvalidWord function\nand word to look up is: " + wordToLookup);
     alert("The word entered (" + wordToLookup + ") is not valid.\nPlease enter a valid English word.");
@@ -116,6 +117,8 @@ let parseJSONinformation = dataFromAPI => {
    
 }
 
+
+//tab for main meaning of the word
 let makePrimaryTab = dataFromAPI => {
 
     $('#myTab').append('<li class="nav-item"><a class="nav-link active" id="word-to-look-up-tab" data-toggle="tab" href="#word-to-look-up-div" role="tab" aria-controls="home" aria-selected="true">Word</a></li>');
@@ -195,6 +198,7 @@ let makePrimaryTab = dataFromAPI => {
 
 
 
+//if word has more than one meaning, make secondary tabs in the panel
 let makeSecondaryTabs = dataFromAPI => {
 
     console.log("Inside make secondary tabs function");
@@ -261,17 +265,11 @@ let makeSecondaryTabs = dataFromAPI => {
         $('#myTabContent').append('<hr></hr>');
     }
 
-    
-
-    //tabs as many as useful objects in array
-    //in each tab
-    //defintion, example, any thing else useful and a link to dictionary and maybe to sentence dict
-    //a function to reste everything
-
 
 }
 
 
+//refresh page content when new word is being looked up
 let resetEverything = () =>{
 
     $('#myTab').empty();
