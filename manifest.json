@@ -1,7 +1,7 @@
 {
     "manifest_version": 2,
     "name": "Swift Lookup",
-    "description": "Swift Lookup dictionary browser extension. Helps you look words up without having to leave your current tab. Utilizes Google Dictionary API.",
+    "description": "Swift Lookup dictionary browser extension. Helps you look words up without having to leave your current tab.",
     "version": "1.0.0",
     "icons": {"128": "images/LogoMakr-8VroqB_128.png"},
     "browser_action": {
